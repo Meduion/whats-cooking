@@ -1,5 +1,8 @@
 const User = require('./User');
+const Recipes = require('./Recipes');
+const UserRecipes = require('./UserRecipes');
 
-//Export your models so that it can be required in the server.js
-// and/or routes files
-module.exports = { User };
+User.belongsToMany(Recipes, { through: UserRecipes });
+Recipes.belongsToMany(User, { through: UserRecipes });
+
+module.exports = { User, Recipes, UserRecipes };

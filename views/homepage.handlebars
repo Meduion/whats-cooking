@@ -1,60 +1,70 @@
-{{! From Bulma, to be modded and replaced on release }}
-{{! TODO: Add GH links, funding links }}
+<main>
+  <section class="intro">
+    <section class="video">
+      <video class="video_media" src="./media/food.mp4" autoplay muted loop></video>
+    </section>
+    <section class="intro_content">
+      <section class="container">
+        <h1 class="intro_title title-m">What's cooking today?</h1>
+      </section>
+      <section class="container">
+        <h1 class="intro_title title-md">An Online Recipe App for all your
+          Cooking Needs</h1>
+      </section>
+    </section>
+    <section class="log_in">
+      <form class="box" id="login-form">
 
-<section class="hero has-background-grey-lightery is-fullheight">
-  <!-- Hero head: will stick at the top -->
-  <div class="hero-head">
-    <nav class="navbar">
-      <div class="container">
-        <div class="navbar-brand">
-          <span class="navbar-burger" data-target="navbarMenuHeroA">
-            <span></span>
-            <span></span>
-            <span></span>
-          </span>
-        </div>
-        <div id="navbarMenuHeroA" class="navbar-menu">
-          <div class="navbar-end">
-            <a class="navbar-item is-active">
-              Home
-            </a>
-            <a class="navbar-item">
-              Features
-            </a>
-            <a class="navbar-item">
-              Documentation
-            </a>
+        <div class="field">
+          <label class="label">Email</label>
+          <div class="control">
+            <input class="input" id="email-login" type="email" placeholder="e.g. alex@example.com" />
           </div>
         </div>
-      </div>
-    </nav>
-  </div>
 
-  <!-- Hero content: will be in the middle -->
-  <div class="hero-body">
-    <div class="container has-text-centered">
-      <p class="title">
-        Coming Soon
-      </p>
-      <p class="subtitle">
-        A New Way to Web
-      </p>
-    </div>
-  </div>
+        <div class="field">
+          <label class="label">Password</label>
+          <div class="control">
+            <input class="input" id="password-login" type="password" placeholder="********" />
+          </div>
+        </div>
+        <section class="box-button">
+          <button class="button is-primary">Log in</button>
+          <button class="button is-primary" id="signup-button" type="button">
+            Sign Up Instead!
+          </button>
+        </section>
+      </form>
+      <form class="box box-in is-hidden" id="signup-form">
 
-  <!-- Hero footer: will stick at the bottom -->
-  <div class="hero-foot">
-    <nav class="tabs">
-      <div class="container">
-        <ul>
-          <li class="is-active"><a>Overview</a></li>
-          <li><a>Modifiers</a></li>
-          <li><a>Grid</a></li>
-          <li><a>Elements</a></li>
-          <li><a>Components</a></li>
-          <li><a>Layout</a></li>
-        </ul>
-      </div>
-    </nav>
-  </div>
-</section>
+        <div class="field">
+          <label class="label">User Name</label>
+          <div class="control">
+            <input class="input" id="name-signup" type="name" placeholder="e.g. Alex" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Email</label>
+          <div class="control">
+            <input class="input" id="email-signup" type="email" placeholder="e.g. alex@example.com" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Password</label>
+          <div class="control">
+            <input class="input" id="password-signup" type="password" placeholder="********" />
+          </div>
+        </div>
+        <section class="box-button">
+          <button class="button is-primary sign">Sign Up</button>
+        </section>
+      </form>
+    </section>
+  </section>
+  <section class="time">
+    <h2 class="timer is-size-4">02-15-2023 (Tuesday) 23:06</h2>
+  </section>
+</main>
+
+<script src="/js/login.js"></script>

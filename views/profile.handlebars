@@ -1,0 +1,267 @@
+<div class="is-hidden" id="user-id">{{user.id}}</div>
+<section class="main is hidden">
+  <section class="columns main-sec">
+    <section class="column is-2"></section>
+    <section class="column is-8">
+      <section class="top-head">
+        <form class="search" id="search-form">
+          <input type="text" class="search__field" id="search-input" placeholder="Search over 1,000,000 recipes..." />
+          <button class="btn-head" type="submit">
+            <svg class="search__icon">
+              <use href="/media/icons.svg#icon-search"></use>
+            </svg>
+            <span>Search</span>
+          </button>
+        </form>
+        <ul class="nav">
+          <li class="nav-btn">
+            <button class="btn-li" id="add-recipe-button">
+              <svg class="">
+                <use href="/media/icons.svg#icon-edit"></use>
+              </svg>
+              <span>Add recipe</span>
+            </button>
+          </li>
+          <li class="nav-btn">
+            <button class="btn-li books">
+              <svg class="">
+                <use href="/media/icons.svg#icon-bookmark"></use>
+              </svg>
+              <span>Bookmarks</span>
+            </button>
+            <div class="bookmarks">
+              <ul class="bookmarks__list">
+                <div class="message-booked is-hidden">
+                  <div>
+                    <svg>
+                      <use href="/media/icons.svg#icon-smile"></use>
+                    </svg>
+                  </div>
+                  <p>
+                    No bookmarks yet. Find a nice recipe and bookmark it
+                  </p>
+                </div>
+                <li class="preview">
+                  <a class="preview__link preview__link--active" href="/profile/44">
+                    <figure class="preview__fig">
+                      <img class="preview_img" src="{{data.image}}" alt="Test" />
+                    </figure>
+                    <div class="preview__data">
+                      <h4 class="preview__title">
+                        {{data.title}}
+                      </h4>
+                      <p class="preview__publisher">{{data.publisher}}</p>
+                      {{#if data.userGenerated}}
+                      <div class="preview__user-generated">
+                        <svg class="preview__icon">
+                          <use href="/media/icons.svg#icon-user"></use>
+                        </svg>
+                      </div>
+                      {{/if}}
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-btn">
+            <button class="btn-li" id="logout">
+              <svg class="">
+                <use href="/media/icons.svg#icon-user"></use>
+              </svg>
+              <span>Log-out</span>
+            </button>
+          </li>
+        </ul>
+      </section>
+      <section class="columns is-mobile top">
+        <section class="column is-one-third col1">
+          <ul class="results">
+            {{#if data}}
+            <li class="preview">
+              <a class="preview__link preview__link--active" href="{{data.id}}">
+                <figure class="preview__fig">
+                  <img class="preview_img" src="{{data.image}}" alt="Test" />
+                </figure>
+                <div class="preview__data">
+                  <h4 class="preview__title">
+                    {{data.title}}
+                  </h4>
+                  <p class="preview__publisher">{{data.publisher}}</p>
+                  {{#if data.userGenerated}}
+                  <div class="preview__user-generated">
+                    <svg class="preview__icon">
+                      <use href="/media/icons.svg#icon-user"></use>
+                    </svg>
+                  </div>
+                  {{/if}}
+                </div>
+              </a>
+            </li>
+            {{/if}}
+          </ul>
+        </section>
+        <section class="column col2">
+          <div class="error is-hidden">
+            <div>
+              <svg>
+                <use href="/media/icons.svg#icon-alert-triangle"></use>
+              </svg>
+            </div>
+            <p>No recipes found for your query. Please try again!</p>
+          </div>
+          {{#unless data}}
+          <div class="message">
+            <div>
+              <svg>
+                <use href="/media/icons.svg#icon-smile"></use>
+              </svg>
+            </div>
+            <p>Start by searching for a recipe or an ingredient. Have fun!</p>
+          </div>
+          {{/unless}}
+          {{#if data}}
+          <div class="recipe">
+            <figure class="recipe__fig">
+              <img src={{data.image}} alt="Tomato" class="recipe__img" />
+              <h1 class="recipe__title">
+                <span>{{data.title}}</span>
+              </h1>
+            </figure>
+
+            <div class="recipe__details">
+              <div class="recipe__info">
+                <svg class="recipe__info-icon">
+                  <use href="/media/icons.svg#icon-clock"></use>
+                </svg>
+                <span class="recipe__info-data recipe__info-data--minutes">{{data.cookingTime}}</span>
+                <span class="recipe__info-text">minutes</span>
+              </div>
+              <div class="recipe__info">
+                <svg class="recipe__info-icon">
+                  <use href="/media/icons.svg#icon-users"></use>
+                </svg>
+                <span class="recipe__info-data recipe__info-data--people">{{data.servings}}</span>
+                <span class="recipe__info-text">servings</span>
+
+                <div class="recipe__info-buttons">
+                  <button id="btn--decrease" class="btn--tiny btn--increase-servings ">
+                    <svg>
+                      <use href="/media/icons.svg#icon-minus-circle"></use>
+                    </svg>
+                  </button>
+                  <button id="btn--increase" class="btn--tiny btn--increase-servings ">
+                    <svg>
+                      <use href="/media/icons.svg#icon-plus-circle"></use>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              {{#if data.userGenerated}}
+
+              <div class="recipe__user-generated">
+                <svg>
+                  <use href="/media/icons.svg#icon-user"></use>
+                </svg>
+              </div>
+              {{/if}}
+              <button class="btn--round">
+                <svg>
+                  <use id="bookm" href="/media/icons.svg#icon-bookmark"></use>
+                </svg>
+              </button>
+            </div>
+
+            <div class="recipe__ingredients">
+              <h2 class="heading--2">Recipe ingredients</h2>
+              <ul class="recipe__ingredient-list">
+                {{#each data.ingredients}}
+                <li class="recipe__ingredient">
+                  <svg class="recipe__icon">
+                    <use href="/media/icons.svg#icon-check"></use>
+                  </svg>
+                  <div class="recipe__quantity">{{this.quantity}}</div>
+                  <div class="recipe__description">
+                    <span class="recipe__unit">{{this.unit}}</span>
+                    {{this.description}}
+                  </div>
+                </li>
+                {{/each}}
+              </ul>
+            </div>
+
+            <div class="recipe__directions">
+              <h2 class="heading--2">How to cook it</h2>
+              <p class="recipe__directions-text">
+                This recipe was carefully designed and tested by
+                <span class="recipe__publisher">{{data.publisher}}</span>.
+                Please check out directions at their website.
+              </p>
+              <a class="btn--small recipe__btn" href={{data.sourceUrl}} target="_blank">
+                <span>Directions</span>
+                <svg class="search__icon">
+                  <use href="/media/icons.svg#icon-arrow-right"></use>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </section>
+        {{/if}}
+      </section>
+    </section>
+    <section class="column is-2"></section>
+  </section>
+</section>
+
+<div class="overlay is-hidden"></div>
+<div class="add-recipe-window is-hidden">
+  <button class="btn--close-modal">&times;</button>
+  <form class="upload">
+    <div class="upload__column">
+      <h3 class="upload__heading">Recipe data</h3>
+      <label>Title</label>
+      <input value="TEST-RECIPE" required name="title" type="text" id="recipe-title" />
+      <label>URL</label>
+      <input value="www.test-recipe.ca" required name="sourceUrl" type="text" id="recipe-url" />
+      <label>Image URL</label>
+      <input value="TEST-RECIPE" required name="image" type="text" id="recipe-image" />
+      <label>Publisher</label>
+      <input value="TESTER" required name="publisher" type="text" id="recipe-publisher" />
+      <label>Prep time</label>
+      <input value="2023" required name="cookingTime" type="number" id="recipe-cooking-time" />
+      <label>Servings</label>
+      <input value="4" required name="servings" type="number" id="recipe-servings" />
+    </div>
+
+    <div class="upload__column" id="ingredient-column">
+      <h3 class="upload__heading">Ingredients</h3>
+      <label>Ingredient 1</label>
+      <input value="0.5,kg,Rice" type="text" required name="ingredient-1"
+        placeholder="Format: 'Quantity,Unit,Description'" />
+      <label>Ingredient 2</label>
+      <input value="1,,Avocado" type="text" name="ingredient-2" placeholder="Format: 'Quantity,Unit,Description'" />
+      <label>Ingredient 3</label>
+      <input value=",,salt" type="text" name="ingredient-3" placeholder="Format: 'Quantity,Unit,Description'" />
+      <label>Ingredient 4</label>
+      <input type="text" name="ingredient-4" placeholder="Format: 'Quantity,Unit,Description'" />
+      <label>Ingredient 5</label>
+      <input type="text" name="ingredient-5" placeholder="Format: 'Quantity,Unit,Description'" />
+      <label>Ingredient 6</label>
+      <input type="text" name="ingredient-6" placeholder="Format: 'Quantity,Unit,Description'" />
+    </div>
+
+    <button id="upload-recipe-btn" class="btn upload__btn">
+      <svg>
+        <use href="/media/icons.svg#icon-upload-cloud"></use>
+      </svg>
+      <span>Upload</span>
+    </button>
+  </form>
+</div>
+</main>
+
+<script src="/js/recipeSearch.js"></script>
+<script src="/js/bookmarkRecipe.js"></script>
+<script src="/js/addRecipe.js"></script>
+<script src="/js/logout.js"></script>

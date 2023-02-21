@@ -16,6 +16,10 @@ User.init(
       primaryKey: true,
       autoIncrement: true,
     },
+    loggedIn: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
